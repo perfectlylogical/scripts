@@ -40,6 +40,7 @@ function Get-DCType
 		$dc_sname = "Parameters"
 		$rodc_key = "SYSTEM\\CurrentControlSet\\Services\\NTDS\\Parameters"
 		$rodc_sname = "Src Root Domain Srv"
+		$secondary_rwdc_sname = "Global Catalog Promotion Complete"
 		
 		$is_dc = $false
 		$is_rodc = $false
@@ -53,7 +54,7 @@ function Get-DCType
 				$valdata = $reg.EnumValues($reg_hive, $rodc_key)
 				if ($valdata.ReturnValue -eq 0)
 				{
-					if ($valdata.snames -contains $rodc_sname)
+					if ($valdata.snames -contains $rodc_sname && $valdata.snames -notcontains $secondary_rwdc_sname)
 					{
 						$is_rodc = $true
 						$rwdc_fqdn = ($reg.GetStringValue($reg_hive, $rodc_key, $rodc_sname)).svalue
