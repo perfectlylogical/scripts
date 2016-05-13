@@ -71,5 +71,8 @@ action = function(host, port)
 	local output = stdnse.output_table()
 	output.responseTime = fastest_response
 	local output_str = string.format("%s", output.responseTime)
+	local file = io.open(host.ip.."-res-time.csv", "a")
+	file:write(host.ip..","..port.number..","..output_str.."\n")
+	file:close()
 	return output, output_str
 end
